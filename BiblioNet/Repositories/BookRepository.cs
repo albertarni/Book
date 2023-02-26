@@ -1,9 +1,7 @@
-﻿using BiblioNet.Application.Repositories;
-using BiblioNet.Core.Models;
-using Microsoft.Extensions.Configuration;
+﻿using BiblioNet.Models;
 using Npgsql;
 
-namespace BiblioNet.Infrastructure.Repositories
+namespace BiblioNet.Repositories
 {
     public class BookRepository : IBookRepository
     {

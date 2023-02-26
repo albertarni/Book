@@ -1,10 +1,7 @@
-﻿
-using BiblioNet.Application.Repositories;
-using BiblioNet.Core.Models;
-using BiblioNet.Infrastructure.Helper;
+﻿using BiblioNet.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BiblioNet.Infrastructure.Repositories
+namespace BiblioNet.Repositories
 {
     public class EfBookRepository : IBookRepository
     {
@@ -17,7 +14,7 @@ namespace BiblioNet.Infrastructure.Repositories
 
         public async Task<Book> CreateAsync(Book book)
         {
-            _context.Books.Add(book.fromBookToBookDAL());
+            _context.Books.Add(book);
             await _context.SaveChangesAsync();
 
             return book;
@@ -31,17 +28,16 @@ namespace BiblioNet.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<Book>> GetAllAsync()
+        public Task<List<Book>> GetAllAsync()
         {
-            var result =  _context.Books.AsNoTracking().Select(Converter.fromBookDALToBook);
-            return await Task.FromResult(result.ToList());
+            return _context.Books.AsNoTracking().ToListAsync();
         }
 
         public async Task<Book> GetByIdAsync(long id)
         {
             var book = await _context.Books.FindAsync(id);
 
-            return book.fromBookDALToBook();
+            return book;
         }
 
         public async Task<Book> UpdateAsync(Book book)
@@ -53,7 +49,7 @@ namespace BiblioNet.Infrastructure.Repositories
 
             await _context.SaveChangesAsync();
 
-            return savedBook.fromBookDALToBook();
+            return savedBook;
         }
     }
 }

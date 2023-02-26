@@ -1,7 +1,6 @@
-﻿
-using BiblioNet.Core.Models;
+﻿using BiblioNet.Models;
 
-namespace BiblioNet.Application.Services
+namespace BiblioNet.Services
 {
     public interface IBookService
     {

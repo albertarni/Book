@@ -1,7 +1,7 @@
-﻿using BiblioNet.Application.Repositories;
-using BiblioNet.Core.Models;
+﻿using BiblioNet.Models;
+using BiblioNet.Repositories;
 
-namespace BiblioNet.Application.Services
+namespace BiblioNet.Services
 {
     public class BookService : IBookService
     {
@@ -9,7 +9,7 @@ namespace BiblioNet.Application.Services
         public BookService(IBookRepository repository) { _repository = repository; }
         public async Task UpdateSecondVersionOfBooks(List<int> ids)
         {
-           
+
             foreach (int id in ids)
             {
                 Book book = await _repository.GetByIdAsync(id);
@@ -19,7 +19,7 @@ namespace BiblioNet.Application.Services
         }
 
 
-       public async Task<List<Book>> GetAllAsync()
+        public async Task<List<Book>> GetAllAsync()
         {
             return await _repository.GetAllAsync();
         }

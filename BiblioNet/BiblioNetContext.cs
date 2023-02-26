@@ -1,9 +1,7 @@
-﻿
-
-using BiblioNet.Infrastructure.Models;
+﻿using BiblioNet.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BiblioNet.Infrastructure
+namespace BiblioNet
 {
     public class BiblioNetContext : DbContext
     {
@@ -11,7 +9,6 @@ namespace BiblioNet.Infrastructure
         {
         }
 
-        public DbSet<BookDAL> Books { get; set; }
-        public DbSet<EmployeeDAL> Employees { get; set; }
+        public DbSet<Book> Books { get; set; }
     }
 }

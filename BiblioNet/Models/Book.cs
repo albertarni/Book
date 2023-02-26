@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BiblioNet.Infrastructure.Models
+namespace BiblioNet.Models
 {
     [Table("Books")]
-    public class BookDAL
+    public class Book
     {
         public long Id { get; set; }
         public string Title { get; set; }

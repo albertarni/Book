@@ -1,7 +1,6 @@
-﻿
-using BiblioNet.Core.Models;
+﻿using BiblioNet.Models;
 
-namespace BiblioNet.Application.Repositories
+namespace BiblioNet.Repositories
 {
     public interface IBookRepository
     {

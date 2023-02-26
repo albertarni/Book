@@ -1,16 +1,12 @@
 using BiblioNet.Dtos;
 using BiblioNet.Models;
 using Microsoft.AspNetCore.Mvc;
-using BiblioNet.Helper;
-using BiblioNet.Core.Models;
-using BiblioNet.Application.Services;
-using Microsoft.AspNetCore.Authorization;
+using BiblioNet.Services;
 
 namespace BiblioNet.Controllers
 {
     [ApiController]
     [Route("books")]
-    [Authorize]
     public class BooksController : ControllerBase
     {
         private readonly ILogger<BooksController> _logger;
@@ -34,11 +30,11 @@ namespace BiblioNet.Controllers
             return Ok(await _service.GetByIdAsync(id));
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateAsync([FromBody] BookCreationDto book)
-        {
-            return Ok(await _service.CreateAsync(new Book { Title = book.Title, Description = book.Description }));
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> CreateAsync([FromBody] BookCreationDto book)
+        //{
+        //    return Ok(await _service.CreateAsync(new Book { Title = book.Title, Description = book.Description }));
+        //}
         [HttpPut]
         public async Task<IActionResult> InsertAsync([FromBody] List<int> ids)
         {
@@ -46,9 +42,14 @@ namespace BiblioNet.Controllers
             return Ok();
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateByIdAsync([FromBody] BookDTO book)
+        public async Task<IActionResult> UpdateByIdAsync([FromBody] BookDto book)
         {
-            return Ok(await _service.UpdateAsync(book.fromBookDTOToBook()));
+            return Ok(await _service.UpdateAsync(new Book 
+            { 
+                Id = book.Id,
+                Title = book.Title, 
+                Description = book.Description 
+            }));
         }
 
         [HttpDelete("{id}")]
